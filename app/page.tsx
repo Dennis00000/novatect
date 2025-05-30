@@ -169,7 +169,7 @@ export default function HomePage() {
       <section className="h-screen relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/concert-hall-architecture.jpg"
+            src="/hero-concert-hall.png"  
             alt="Concert Hall Architecture"
             fill
             className="object-cover brightness-60"
