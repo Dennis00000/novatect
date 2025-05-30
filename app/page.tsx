@@ -169,7 +169,7 @@ export default function HomePage() {
       <section className="h-screen relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hero%20picture.jpg-dkCj5UvUBoA2furF7WhqWjD5P9Sfdx.jpeg"
+            src="/concert-hall-architecture.jpg"
             alt="Concert Hall Architecture"
             fill
             className="object-cover brightness-60"
