@@ -255,25 +255,25 @@ export default function HomePage() {
 
             {currentModal === "projects" && (
               <div className="p-8 md:p-12">
-                <h2 className="text-4xl md:text-5xl font-light tracking-[3px] mb-8">OUR PROJECTS</h2>
-                <div className="grid md:grid-cols-2 gap-8">
-                  {projectData.map((project, idx) => (
-                    <div key={idx} className="group">
-                      <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
+                <h2 className="text-4xl md:text-5xl font-light tracking-[3px] mb-8">PROJECTS</h2>
+                <div className="grid gap-8 md:grid-cols-2">
+                  {projectData.map((project) => (
+                    <div key={project.title} className="flex flex-col bg-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-yellow-600 transition-shadow duration-300">
+                      <div className="relative w-full h-56 md:h-48">
                         <Image
-                          src={project.image || "/placeholder.svg"}
+                          src={project.image}
                           alt={project.title}
                           fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="object-cover"
+                          priority
                         />
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-start">
-                          <h3 className="text-xl font-bold tracking-wider">{project.title}</h3>
-                          <span className="text-sm opacity-70">{project.year}</span>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h3 className="font-bold text-xl tracking-[3px] mb-2">{project.title}</h3>
+                        <div className="text-sm tracking-[2px] font-semibold opacity-70 mb-4">
+                          {project.type} - {project.year}
                         </div>
-                        <div className="text-xs tracking-[2px] text-yellow-600 mb-2">{project.type}</div>
-                        <p className="text-sm opacity-80 leading-relaxed">{project.description}</p>
+                        <p className="text-sm leading-relaxed flex-grow">{project.description}</p>
                       </div>
                     </div>
                   ))}
@@ -284,16 +284,12 @@ export default function HomePage() {
             {currentModal === "blog" && (
               <div className="p-8 md:p-12">
                 <h2 className="text-4xl md:text-5xl font-light tracking-[3px] mb-8">BLOG</h2>
-                <div className="space-y-8">
-                  {blogPosts.map((post, idx) => (
-                    <article key={idx} className="border-b border-zinc-700 pb-6 last:border-b-0">
-                      <div className="mb-3">
-                        <h3 className="text-xl font-light hover:text-yellow-600 cursor-pointer transition-colors mb-2">
-                          {post.title}
-                        </h3>
-                        <div className="text-sm opacity-70">{post.date}</div>
-                      </div>
-                      <p className="text-sm opacity-80 leading-relaxed">{post.excerpt}</p>
+                <div className="space-y-6">
+                  {blogPosts.map((post) => (
+                    <article key={post.title} className="border-b border-zinc-700 pb-4">
+                      <h3 className="font-bold text-xl tracking-[3px] mb-2">{post.title}</h3>
+                      <time className="text-xs opacity-70 block mb-2">{post.date}</time>
+                      <p className="text-sm leading-relaxed opacity-80">{post.excerpt}</p>
                     </article>
                   ))}
                 </div>
@@ -301,75 +297,40 @@ export default function HomePage() {
             )}
 
             {currentModal === "contacts" && (
-              <div className="p-8 md:p-12">
-                <h2 className="text-4xl md:text-5xl font-light tracking-[3px] mb-8">CONTACTS</h2>
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div>
-                    <h3 className="text-2xl font-light mb-6">Get in touch</h3>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-sm tracking-[2px] mb-2 opacity-70">OFFICE</h4>
-                        <p className="text-lg">
-                          123 Architecture Avenue
-                          <br />
-                          New York, NY 10001
-                          <br />
-                          United States
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-sm tracking-[2px] mb-2 opacity-70">CONTACT</h4>
-                        <p className="text-lg">
-                          +1 (555) 123-4567
-                          <br />
-                          hello@novatect.studio
-                          <br />
-                          www.novatect.studio
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-sm tracking-[2px] mb-2 opacity-70">HOURS</h4>
-                        <p className="text-lg">
-                          Monday - Friday: 9:00 - 18:00
-                          <br />
-                          Saturday: 10:00 - 16:00
-                          <br />
-                          Sunday: Closed
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <form className="space-y-6">
-                      <input
-                        type="text"
-                        placeholder="Your Name"
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded px-4 py-3 text-white placeholder-zinc-400 focus:border-yellow-600 focus:outline-none transition-colors"
-                      />
-                      <input
-                        type="email"
-                        placeholder="Your Email"
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded px-4 py-3 text-white placeholder-zinc-400 focus:border-yellow-600 focus:outline-none transition-colors"
-                      />
-                      <input
-                        type="text"
-                        placeholder="Project Type"
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded px-4 py-3 text-white placeholder-zinc-400 focus:border-yellow-600 focus:outline-none transition-colors"
-                      />
-                      <textarea
-                        placeholder="Tell us about your project..."
-                        rows={4}
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded px-4 py-3 text-white placeholder-zinc-400 focus:border-yellow-600 focus:outline-none transition-colors resize-none"
-                      />
-                      <button
-                        type="submit"
-                        className="w-full bg-yellow-600 text-zinc-900 py-3 text-sm tracking-[2px] font-bold hover:bg-yellow-500 transition-colors duration-300"
-                      >
-                        SEND MESSAGE
-                      </button>
-                    </form>
-                  </div>
-                </div>
+              <div className="p-8 md:p-12 max-w-md mx-auto">
+                <h2 className="text-4xl md:text-5xl font-light tracking-[3px] mb-8">CONTACT US</h2>
+                <form
+                  className="flex flex-col space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    alert("Form submitted! (This is a placeholder)")
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="bg-zinc-800 rounded-md px-4 py-3 text-white placeholder:text-zinc-500"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="bg-zinc-800 rounded-md px-4 py-3 text-white placeholder:text-zinc-500"
+                    required
+                  />
+                  <textarea
+                    placeholder="Message"
+                    rows={5}
+                    className="bg-zinc-800 rounded-md px-4 py-3 text-white placeholder:text-zinc-500 resize-none"
+                    required
+                  ></textarea>
+                  <button
+                    type="submit"
+                    className="bg-yellow-600 hover:bg-yellow-500 transition-colors duration-300 font-bold text-zinc-900 py-3 rounded-md tracking-[2px]"
+                  >
+                    SEND MESSAGE
+                  </button>
+                </form>
               </div>
             )}
           </div>
